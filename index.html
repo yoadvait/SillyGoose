@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silly Goose — Games, Made Beautiful</title>
+<meta name="description" content="Silly Goose is a playful Indian games and gifting brand. Premium playing-card decks for playing, gifting and collecting. Custom decks for weddings, brands and birthdays.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<style>
+:root{
+  /* ── Custom Palette ── */
+  --col-beige: #F8F6EF; /* Background from image */
+  --col-fern: #768E78;
+  --col-pistachio: #C6C09C;
+  --col-fennel: #EBDEC0;
+  --col-peony: #E79897;
+  --col-peach: #DBF0EC;
+  --col-honey: #FDDD97;
+  --col-blue-finch: #DBF0EC;
+  --col-polaris-star: #7197D3;
+  
+  /* Text colors on top of palette blocks */
+  --col-text-on-pistachio: #4A4832; /* Darker tone for visibility on light green */
+  --col-text-on-peach: #2C4656; /* Dark slate for contrast on light blue */
+  --col-text-on-peony: #7A3B3B; /* Darker red/brown from image */
+  --col-text-on-honey: #7A4B2B; /* Darker brown from image */
+  --col-text-on-fennel: #5A4A3A; /* Dark brown from image */
+  --col-text-on-fern: var(--col-beige);
+  
+  --color-bg: var(--col-beige);          /* warm yellowish beige — base page */
+  --color-surface: #fffcf6;
+  --color-surface-2: #fefbf1;
+  --color-surface-offset: var(--col-fennel); 
+  --color-surface-offset-2: var(--col-peony); 
+  --color-divider: #ddd8cc;
+  --color-border: #c4bfb0;
+  --color-text: #4A4832;        /* darkened text */
+  --color-text-muted: #6E6C53;
+  --color-text-faint: #939178;
+  --color-text-inverse: #ffffff;
+  /* Primary CTA */
+  --color-primary: var(--col-fern);
+  --color-primary-hover: #5F7461;
+  --color-primary-active: #4B5B4D;
+  --color-primary-highlight: #C5D3C7;
+  --color-gold: #c8a06a;        /* warm sand gold */
+  --color-gold-hover: #b08850;
+  --color-gold-highlight: #f0e4cc;
+  --color-success: #6a9b68;
+  --color-error: #c08080;
+  /* Named palette tokens */
+  --col-cream: var(--col-beige);    --col-sage: var(--col-pistachio);    --col-blue: var(--col-blue-finch);
+  --col-sage-deep: #4A4832; --col-blue-deep: var(--col-polaris-star); --col-cream-dark: #4A4832;
+  --col-sage-mid: var(--col-pistachio); --col-blue-mid: var(--col-blue-finch);
+  /* Section-stripe backgrounds */
+  --stripe-1: var(--col-cream);  /* cream */
+  --stripe-2: var(--col-blue);   /* blue finch */
+  --stripe-3: var(--col-sage);   /* pistachio */
+  --radius-sm:.375rem; --radius-md:.5rem; --radius-lg:.9rem; --radius-xl:1.4rem; --radius-full:9999px;
+  --transition-interactive:220ms cubic-bezier(.16,1,.3,1);
+  --shadow-sm:0 1px 4px rgba(30,25,15,.08); --shadow-md:0 8px 24px rgba(30,25,15,.12); --shadow-lg:0 20px 48px rgba(30,25,15,.18);
+  --content-narrow:640px; --content-default:1080px; --content-wide:1320px;
+  --font-display:'Playfair Display','Georgia',serif;
+  --font-body:'Playfair Display','Georgia',serif;
+  --font-logo:'Playfair Display','Georgia',serif;
+  --text-xs:clamp(.75rem,.7rem + .25vw,.875rem); --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+  --text-base:clamp(1rem,.95rem + .25vw,1.125rem); --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+  --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem); --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+  --text-3xl:clamp(2.5rem,1rem + 4vw,5rem); --text-hero:clamp(2.8rem,.5rem + 7vw,6.5rem);
+  --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;
+  --space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;--space-32:8rem;
+}
+[data-theme="dark"]{
+  --color-bg:#181a18; --color-surface:#1e221e; --color-surface-2:#222822; --color-surface-offset:#253025; --color-surface-offset-2:#1e2830;
+  --color-divider:#2a3528; --color-border:#3a4838;
+  --color-text:#eaede8; --color-text-muted:#a8b4a0; --color-text-faint:#60705a; --color-text-inverse:#181a18;
+  --color-primary:#9cb89b; --color-primary-hover:#b4ccb2; --color-primary-active:#ccdeca; --color-primary-highlight:#1e3020;
+  --color-gold:#c8a06a; --color-gold-hover:#daba88; --color-gold-highlight:#2e2818;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.5); --shadow-md:0 8px 24px rgba(0,0,0,.6); --shadow-lg:0 20px 48px rgba(0,0,0,.7);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+  min-height:100dvh;line-height:1.72;font-family:var(--font-body);font-size:var(--text-base);
+  color:var(--color-text);overflow-x:hidden;
+  background-color:var(--color-bg);
+  /* background-image removed */
+  background-size: cover;
+  background-attachment:fixed;
+}
+img,svg{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+ul[role="list"]{list-style:none}
+button,input,textarea,select{font:inherit;color:inherit}
+/* Headings: Cormorant Garamond — elegant serif */
+h1,h2,h3,h4{font-family:var(--font-display);text-wrap:balance;line-height:1.1;font-weight:500;color:var(--col-sage-deep);letter-spacing:.01em}
+h1{font-weight:400;letter-spacing:-.01em}
+/* Logo: Great Vibes script */
+.logo-text{font-family:var(--font-logo);font-size:1.6rem;letter-spacing:.02em;font-weight:400}
+p{text-wrap:pretty;max-width:60ch}
+::selection{background:color-mix(in oklab,var(--color-primary) 25%,transparent);}
+:focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+button{cursor:pointer;background:none;border:none}
+a,button{transition:color var(--transition-interactive),background var(--transition-interactive),border-color var(--transition-interactive),box-shadow var(--transition-interactive),transform var(--transition-interactive)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.container{max-width:var(--content-default);margin-inline:auto;padding-inline:var(--space-5)}
+.container-wide{max-width:var(--content-wide);margin-inline:auto;padding-inline:var(--space-5)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:var(--space-4) 0;background:var(--col-honey);color:var(--col-text-on-honey);border-bottom:1px solid transparent;transition:border-color var(--transition-interactive),background var(--transition-interactive)}
+.nav.scrolled{border-color:var(--color-divider);box-shadow:var(--shadow-sm)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6)}
+.logo{display:flex;align-items:center;gap:var(--space-2);font-family:var(--font-display);font-size:var(--text-lg);font-weight:700;letter-spacing:.02em;color:inherit}
+.logo svg{width:30px;height:30px;color:inherit}
+.nav-links{display:flex;align-items:center;gap:var(--space-8);font-size:var(--text-sm);font-weight:500}
+.nav-links a{color:inherit;opacity:0.9;position:relative}
+.nav-links a:hover{opacity:1}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:currentColor;transition:width var(--transition-interactive)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:var(--space-4)}
+.theme-toggle{width:36px;height:36px;display:grid;place-items:center;border-radius:var(--radius-full);color:inherit;opacity:0.8}
+.theme-toggle:hover{background:rgba(255,255,255,0.1);opacity:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;white-space:nowrap}
+.btn-primary{background:var(--col-beige);color:var(--col-text-on-honey)}
+.btn-primary:hover{background:#ffffff;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-ghost{background:transparent;color:var(--color-text);border:1px solid var(--color-border)}
+.btn-ghost:hover{background:var(--color-surface-offset)}
+.hamburger{display:none;width:40px;height:40px;place-items:center;color:var(--color-text)}
+.mobile-menu{position:fixed;inset:0;background:var(--color-bg);z-index:200;display:flex;flex-direction:column;padding:var(--space-6);transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-16)}
+.mobile-menu a{display:block;font-family:var(--font-display);font-size:var(--text-xl);padding:var(--space-4) 0;border-bottom:1px solid var(--color-divider)}
+@media(max-width:860px){.nav-links{display:none}.nav-actions .btn-primary.desktop-cta{display:none}.hamburger{display:grid}}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:120px;padding-bottom:0;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background-color:var(--color-bg)}
+[data-theme="dark"] .hero-bg{background-color:#1c1b18}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,var(--color-bg) 100%)}
+.hero-inner{position:relative;z-index:1;text-align:center;width:100%}
+.hero-title-wrap{padding-inline:var(--space-5);max-width:960px;margin-inline:auto;padding-bottom:var(--space-8)}
+.hero h1{font-size:var(--text-hero);letter-spacing:-.01em;white-space:nowrap}
+/* Hero: "Games," Baby Blue · "made beautiful." Blush Pink */
+.hero h1{color:var(--col-blue-dark)}
+.hero h1 em{font-style:normal;color:var(--col-blush-dark)}
+.btn-lg{padding:var(--space-4) var(--space-8);font-size:var(--text-base)}
+
+/* ARC CAROUSEL */
+.arc-carousel-outer{position:relative;width:100%;overflow:hidden;cursor:grab;padding-top:clamp(80px,10vw,130px);padding-bottom:0}
+.arc-carousel-outer:active{cursor:grabbing}
+/* Left & right fades — wide, start opaque so cards vanish into nothing */
+.arc-carousel-outer::before,.arc-fade-right{content:'';position:absolute;top:0;bottom:0;z-index:10;pointer-events:none;width:clamp(120px,22vw,320px)}
+.arc-carousel-outer::before{left:0;background:linear-gradient(to right, var(--color-bg) 0%, var(--color-bg) 20%, transparent 100%)}
+.arc-fade-right{right:0;background:linear-gradient(to left, var(--color-bg) 0%, var(--color-bg) 20%, transparent 100%)}
+/* Bottom fade — blends cards seamlessly into title below */
+.arc-fade-bottom{position:absolute;left:0;right:0;bottom:0;height:clamp(80px,14vw,160px);z-index:11;pointer-events:none;
+  background:linear-gradient(to bottom, transparent 0%, var(--color-bg) 100%)}
+.arc-track{display:flex;gap:18px;align-items:flex-end;will-change:transform;user-select:none;touch-action:pan-y;padding:0 80px 0}
+.arc-card{flex-shrink:0;width:clamp(130px,11.5vw,185px);aspect-ratio:5/7;border-radius:12px;overflow:hidden;box-shadow:0 14px 40px rgba(40,25,10,.22);border:1px solid var(--color-border);background:var(--color-surface-offset);will-change:transform;transform-origin:bottom center;transition:box-shadow .25s ease}
+.arc-card:hover{box-shadow:0 24px 56px rgba(40,25,10,.32)}
+.arc-card img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+/* Title sits directly below with no gap */
+.hero-title-wrap{padding-inline:var(--space-5);max-width:960px;margin-inline:auto;padding-top:0;padding-bottom:var(--space-10)}
+.arc-hint{display:none}/* hint removed — transition is seamless */
+@media(max-width:640px){.hero h1{white-space:normal}.arc-card{width:clamp(90px,24vw,130px)}.arc-carousel-outer::before,.arc-fade-right{width:60px}}
+
+/* SECTION HEADERS — each section gets its own pastel heading colour */
+.section{padding-block:clamp(var(--space-16),8vw,var(--space-24))}
+.section-head{text-align:center;max-width:640px;margin-inline:auto;margin-bottom:var(--space-12)}
+.section-kicker{font-size:var(--text-xs);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:var(--space-3)}
+.section-head h2{font-size:var(--text-2xl);letter-spacing:-.01em}
+.section-head p{margin-inline:auto;color:var(--color-text-muted);margin-top:var(--space-3)}
+
+/* ── Section headings: Sage + Blue palette ── */
+/* Hero */
+.hero h1{color:var(--col-sage-deep)}
+.hero h1 em{font-style:italic;color:var(--col-blue-deep)}
+/* Shop → dusty blue */
+#shop .section-kicker,#shop .section-head h2{color:var(--col-blue-deep)}
+/* Deck Visualiser → sage */
+.section:has(.visualiser-wrap) .section-kicker,
+.section:has(.visualiser-wrap) .section-head h2{color:var(--col-sage-deep)}
+/* Why → blue deep */
+.section:has(.why-grid) .section-kicker,
+.section:has(.why-grid) .section-head h2{color:var(--col-blue-deep)}
+/* Object → sage */
+.section:has(.object-section) .section-kicker{color:var(--col-sage-deep)}
+.object-text h2{color:var(--col-sage-deep)}
+/* Gifting → gold/warm */
+#gifting .section-kicker,#gifting .section-head h2{color:var(--color-gold)}
+/* Custom → sage */
+#custom .section-kicker,#custom .section-head h2{color:var(--col-sage-deep)}
+/* About → blue */
+#about .section-kicker,#about h2{color:var(--col-blue-deep)}
+.bt-label{color:var(--col-sage-mid)}
+/* Generic fallback */
+.section-kicker{color:var(--col-sage-mid);font-style:italic;font-family:var(--font-display)}
+
+/* CUSTOM STRIP */
+.custom-strip{border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);background:var(--color-surface);padding:0}
+.custom-strip-inner{display:grid;grid-template-columns:repeat(4, 1fr);overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.custom-strip-inner::-webkit-scrollbar{display:none}
+.custom-strip-item{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:center;padding:24px 16px;border-right:1px solid var(--color-divider);cursor:default;transition:background var(--transition-interactive)}
+.custom-strip-item:nth-child(1){background:var(--col-pistachio);color:var(--col-text-on-pistachio)}
+.custom-strip-item:nth-child(2){background:var(--col-peach);color:var(--col-text-on-peach)}
+.custom-strip-item:nth-child(3){background:var(--col-peony);color:var(--col-text-on-peony)}
+.custom-strip-item:nth-child(4){background:var(--col-honey);color:var(--col-text-on-honey)}
+.custom-strip-item:last-of-type{border-right:none}
+.custom-strip-item svg{width:26px;height:26px;stroke:currentColor;margin-bottom:12px;opacity:0.9}
+.custom-strip-item h4{font-family:var(--font-display);font-size:24px;font-weight:600;margin-bottom:4px;color:currentColor}
+.custom-strip-item p{font-size:13px;color:currentColor;opacity:0.85;line-height:1.4;margin:0;max-width:none}
+@media(max-width:860px){.custom-strip-inner{grid-template-columns:repeat(2, 1fr)}.custom-strip-item:nth-child(2){border-right:none}.custom-strip-item:nth-child(1),.custom-strip-item:nth-child(2){border-bottom:1px solid var(--color-divider)}}
+@media(max-width:480px){.custom-strip-inner{grid-template-columns:1fr}.custom-strip-item{border-right:none;border-bottom:1px solid var(--color-divider)}.custom-strip-item:last-of-type{border-bottom:none}}
+
+/* SHOP THE WORLDS */
+.worlds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
+.world-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:5/7;background:var(--color-surface-offset);cursor:pointer;box-shadow:var(--shadow-sm)}
+.world-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.world-card:hover img{transform:scale(1.08) rotate(-1deg)}
+.world-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.75) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:var(--space-5);color:#fff}
+.world-overlay .wname{font-family:var(--font-display);font-size:var(--text-base);margin-bottom:var(--space-1)}
+.world-overlay .wtag{font-size:var(--text-xs);opacity:.85;margin-bottom:var(--space-3)}
+.world-cta{display:inline-flex;align-items:center;gap:6px;font-size:var(--text-xs);font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:0;transform:translateY(6px);transition:var(--transition-interactive)}
+.world-card:hover .world-cta{opacity:1;transform:translateY(0)}
+@media(max-width:1100px){.worlds-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:700px){.worlds-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:440px){.worlds-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* DECK VISUALISER */
+.visualiser-wrap{background:var(--color-surface-offset);border-radius:var(--radius-xl);padding:var(--space-6) var(--space-4);position:relative}
+.visualiser-tabs{display:flex;gap:var(--space-2);justify-content:center;margin-bottom:var(--space-6);flex-wrap:wrap}
+.vtab{padding:var(--space-2) var(--space-5);border-radius:var(--radius-full);font-size:var(--text-sm);font-weight:600;background:var(--color-surface);border:1px solid var(--color-border);color:var(--color-text-muted)}
+.vtab.active, .vtab:hover{background:var(--col-peony);color:var(--col-text-on-peony);border-color:var(--col-peony)}
+.deck-stage{position:relative;height:320px;display:flex;align-items:center;justify-content:center;touch-action:none;user-select:none}
+.deck-track{position:absolute;top:50%;left:50%;width:100%;height:100%;transform:translate(-50%,-50%);perspective:1200px}
+.deck-card{position:absolute;top:50%;width:160px;height:224px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);overflow:hidden;background:var(--color-surface);border:1px solid var(--color-border);will-change:transform;transition:box-shadow .25s ease}
+.deck-card img{width:100%;height:100%;object-fit:cover}
+.deck-hint{text-align:center;font-size:var(--text-xs);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:var(--space-6);opacity:.7}
+@media(max-width:640px){.deck-card{width:90px;height:126px}.deck-stage{height:300px}}
+
+/* WHY SECTION — sage + blue + cream card mix */
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-6)}
+.why-card{text-align:left;padding:var(--space-6);border-radius:var(--radius-lg)}
+.why-card:nth-child(1){background:var(--col-pistachio);}
+.why-card:nth-child(1) h3,.why-card:nth-child(1) .why-icon{color:var(--color-text)}
+.why-card:nth-child(2){background:var(--col-snow);}
+.why-card:nth-child(2) h3,.why-card:nth-child(2) .why-icon{color:var(--color-text)}
+.why-card:nth-child(3){background:var(--col-light-rose);}
+.why-card:nth-child(3) h3,.why-card:nth-child(3) .why-icon{color:var(--color-text)}
+.why-card:nth-child(4){background:var(--col-pistachio);}
+.why-card:nth-child(4) h3,.why-card:nth-child(4) .why-icon{color:var(--color-text)}
+.why-icon{width:44px;height:44px;margin-bottom:var(--space-4)}
+.why-card h3{font-size:var(--text-lg);margin-bottom:var(--space-2)}
+.why-card p{color:var(--color-text-muted);font-size:var(--text-sm)}
+@media(max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.why-grid{grid-template-columns:1fr}}
+
+/* SILLY GOOSE OBJECT */
+.object-section{display:grid;grid-template-columns:1.1fr 1fr;gap:var(--space-16);align-items:center}
+.object-img{border-radius:var(--radius-xl);overflow:hidden;box-shadow:var(--shadow-lg)}
+.object-text h2{font-size:var(--text-2xl);margin-bottom:var(--space-4)}
+.object-text p{color:var(--color-text-muted);font-size:var(--text-lg);margin-bottom:var(--space-8)}
+.object-list{display:flex;flex-direction:column;gap:var(--space-4)}
+.object-list li{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text)}
+.object-list svg{width:18px;height:18px;color:var(--color-primary);flex-shrink:0}
+@media(max-width:860px){.object-section{grid-template-columns:1fr;gap:var(--space-8)}}
+
+/* GIFT BY PERSON */
+.person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
+.person-card{text-align:center;padding:var(--space-6) var(--space-3);border-radius:var(--radius-lg);border:1px solid var(--color-border)}
+.person-card:nth-child(1){background:#FFEBE8} /* cherry blossom */
+.person-card:nth-child(2){background:var(--col-blue-finch); color:var(--col-polaris-star);} /* blue finch */
+.person-card:nth-child(2) h4, .person-card:nth-child(2) p, .person-card:nth-child(2) div, .person-card:nth-child(2) .person-icon { color:var(--col-polaris-star); }
+.person-card:nth-child(3){background:#D6CFEB} /* aster */
+.person-card:nth-child(4){background:#E4EFD2} /* lamb's ear */
+.person-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);opacity:.9}
+.person-icon{font-size:2rem;margin-bottom:var(--space-3)}
+.person-card h4{font-size:var(--text-sm);font-family:var(--font-body);font-weight:700;margin-bottom:var(--space-1)}
+@media(max-width:900px){.person-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.person-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* CUSTOM GAMES */
+.custom-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
+.custom-card{padding:var(--space-6);border-radius:var(--radius-lg);min-height:160px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--color-border);background:var(--col-blue-finch);color:var(--col-text-on-peach);transition:all 0.25s ease-in-out;cursor:pointer;}
+.custom-card:hover, .custom-card:active{background:var(--col-peony);color:var(--col-text-on-peony);box-shadow:var(--shadow-sm);}
+.custom-card h4{font-family:var(--font-display);font-size:var(--text-lg);color:currentColor}
+.custom-card p{font-size:var(--text-sm);color:currentColor;margin-top:var(--space-2);opacity:0.9}
+@media(max-width:900px){.custom-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.custom-grid{grid-template-columns:1fr}}
+
+/* PORTFOLIO & CATALOG */
+.portfolio-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--space-2);margin-bottom:var(--space-8)}
+.filter-pill{padding:8px 20px;border-radius:9999px;border:1px solid var(--color-border);background:transparent;color:var(--color-text);font-size:var(--text-sm);font-weight:500;cursor:pointer;transition:all var(--transition-interactive)}
+.filter-pill:hover{border-color:var(--col-sage-mid);background:var(--color-surface-offset)}
+.filter-pill.active{background:var(--col-sage-deep);color:#ffffff;border-color:var(--col-sage-deep)}
+.portfolio-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-6);margin-bottom:-32px;position:relative;z-index:10;}
+.portfolio-card{flex: 0 1 calc(25% - 1.2rem); min-width: 180px; max-width: 240px; background:var(--color-surface);border-radius:12px;padding:var(--space-3);cursor:pointer;transition:transform var(--transition-interactive),box-shadow var(--transition-interactive),background var(--transition-interactive);border:1px solid var(--color-border);position:relative;}
+.portfolio-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.portfolio-card.active{background:var(--col-fennel);border-bottom-color:var(--col-fennel);border-bottom-left-radius:0;border-bottom-right-radius:0;transform:translateY(33px);padding-bottom:calc(var(--space-3) + 33px);box-shadow:none;z-index:20;}
+.portfolio-card.active::after{content:'▾';position:absolute;bottom:8px;left:50%;transform:translateX(-50%);color:var(--color-text);font-size:16px;opacity:0.3;pointer-events:none;}
+.portfolio-img-wrap{width:100%;aspect-ratio:1/1;overflow:hidden;border-radius:8px;margin-bottom:var(--space-4)}
+.portfolio-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease}
+.portfolio-card:hover .portfolio-img-wrap img{transform:scale(1.05)}
+.portfolio-card h4{font-family:var(--font-display);font-size:18px;margin-bottom:4px}
+.portfolio-card-tag{font-size:12px;color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.05em}
+@media(max-width:1024px){.portfolio-card{flex: 0 1 calc(33.333% - 1.2rem)}}
+@media(max-width:768px){.portfolio-card{flex: 0 1 calc(50% - 1.2rem)}}
+@media(max-width:480px){.portfolio-card{flex: 0 1 100%}}
+.lightbox-modal{max-width:900px;width:95%}
+.lightbox-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--space-4);margin-top:var(--space-4)}
+.lightbox-grid img{width:100%;border-radius:8px;object-fit:cover;aspect-ratio:3/4;border:1px solid var(--color-border)}
+.inline-spread{display:flex;justify-content:center;align-items:center;margin-top:var(--space-8);min-height:350px;position:relative}
+.fan-card{width:clamp(120px,15vw,200px);aspect-ratio:5/7;border-radius:12px;box-shadow:0 12px 32px rgba(40,25,10,.2);border:1px solid var(--color-border);background:var(--color-surface);position:absolute;transition:transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease; transform-origin:bottom center; transform: rotate(var(--rot, 0deg))}
+.fan-card:hover{transform: rotate(var(--rot, 0deg)) translateY(-20px) scale(1.05) !important;box-shadow:0 20px 48px rgba(40,25,10,.3);z-index:10 !important}
+.fan-card img{width:100%;height:100%;object-fit:cover;border-radius:11px;pointer-events:none;-webkit-user-drag:none}
+
+/* BIRTHDAY */
+.birthday-flow{display:flex;align-items:center;justify-content:center;gap:var(--space-4);flex-wrap:wrap;margin:var(--space-10) 0}
+.flow-step{display:flex;flex-direction:column;align-items:center;gap:var(--space-2);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted)}
+.flow-box{width:72px;height:72px;border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-border);display:grid;place-items:center;color:var(--color-primary)}
+.flow-arrow{color:var(--color-text-faint)}
+
+/* B2B — Sage green */
+.b2b-section{background:var(--col-sage);color:var(--col-sage-deep);border-radius:var(--radius-xl);padding:clamp(var(--space-10),6vw,var(--space-20));text-align:center}
+.b2b-section h2{font-size:var(--text-2xl);margin-bottom:var(--space-4);color:var(--col-sage-deep)}
+.b2b-section p{color:var(--color-text-muted);margin-inline:auto;margin-bottom:var(--space-8);font-size:var(--text-lg)}
+.b2b-features{display:flex;gap:var(--space-3);justify-content:center;flex-wrap:wrap;margin-bottom:var(--space-10);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.06em}
+.b2b-features span{padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);border:1px solid color-mix(in oklab,var(--col-sage-deep) 35%,transparent)}
+.btn-inverse{background:var(--col-sage-deep);color:#fff}
+.btn-inverse:hover{background:color-mix(in oklab,var(--col-sage-deep) 85%,#000)}
+
+/* BIGGER SILLY GOOSE */
+.bigger-rohi{text-align:center}
+.bigger-timeline{display:flex;justify-content:center;gap:var(--space-10);flex-wrap:wrap;margin-top:var(--space-10)}
+.bt-item{max-width:220px}
+.bt-label{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-primary);margin-bottom:var(--space-2)}
+.bt-item h3{font-family:var(--font-display);font-size:var(--text-lg)}
+
+/* TRUST — sage + blue + cream rotation */
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4)}
+.trust-card{padding:var(--space-5);text-align:center;border-radius:var(--radius-md)}
+.trust-card:nth-child(1){background:var(--col-blue)}
+.trust-card:nth-child(2){background:var(--col-sage)}
+.trust-card:nth-child(3){background:#e8dfd0}
+.trust-card:nth-child(4){background:var(--col-blue)}
+.trust-card svg{width:26px;height:26px;color:var(--col-sage-deep);margin-bottom:var(--space-2)}
+.trust-card p{font-size:var(--text-xs);color:var(--color-text-muted);text-align:center;margin-inline:auto}
+@media(max-width:900px){.trust-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* FOOTER */
+.footer{border-top:1px solid var(--color-divider);padding-block:var(--space-16) var(--space-8)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:var(--space-8);margin-bottom:var(--space-12)}
+.footer-brand p{color:var(--color-text-muted);font-size:var(--text-sm);margin-top:var(--space-3);max-width:32ch}
+.footer-col h5{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-faint);margin-bottom:var(--space-4)}
+.footer-col a{display:block;font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-3)}
+.footer-col a:hover{color:var(--color-text)}
+.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--space-4);border-top:1px solid var(--color-divider);padding-top:var(--space-6);font-size:var(--text-xs);color:var(--color-text-faint)}
+.social-row{display:flex;gap:var(--space-3);margin-top:var(--space-4)}
+.social-row a{width:36px;height:36px;border-radius:var(--radius-full);background:var(--color-surface-offset);display:grid;place-items:center}
+@media(max-width:860px){.footer-grid{grid-template-columns:1fr 1fr}}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(20,14,8,.55);z-index:300;display:flex;align-items:center;justify-content:center;padding:var(--space-4);opacity:0;visibility:hidden;transition:opacity .3s ease}
+.modal-overlay.open{opacity:1;visibility:visible}
+.modal{background:var(--color-surface);border-radius:var(--radius-xl);padding:var(--space-8);max-width:560px;width:100%;max-height:88vh;overflow-y:auto;transform:scale(.94);transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.modal-overlay.open .modal{transform:scale(1)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-6)}
+.modal-head h3{font-size:var(--text-xl)}
+.modal-close{width:32px;height:32px;display:grid;place-items:center;border-radius:var(--radius-full);color:var(--color-text-muted)}
+.modal-close:hover{background:var(--color-surface-offset)}
+.form-row{display:flex;flex-direction:column;gap:var(--space-2);margin-bottom:var(--space-4)}
+.form-row label{font-size:var(--text-xs);font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--color-text-muted)}
+.form-row input,.form-row select,.form-row textarea{padding:var(--space-3) var(--space-4);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-surface-2);font-size:var(--text-sm)}
+.form-row input:focus,.form-row select:focus,.form-row textarea:focus{border-color:var(--color-primary)}
+.form-grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}
+@media(max-width:480px){.form-grid2{grid-template-columns:1fr}}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);will-change:opacity, transform;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+  <symbol id="icon-cards" viewBox="0 0 24 24" fill="none"><path d="M3 6a2 2 0 012-2h9a2 2 0 012 2v13a2 2 0 01-2 2H5a2 2 0 01-2-2V6z" stroke="currentColor" stroke-width="1.6"/><path d="M9 4l9.5 2.8a2 2 0 011.35 2.48l-3.3 11.2" stroke="currentColor" stroke-width="1.6"/></symbol>
+</defs></svg>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="container nav-inner">
+    <a href="https://sillygoose.in" class="logo" aria-label="Silly Goose home" style="gap: 12px; align-items: center;">
+      <img src="./public/images/logo.svg" onerror="this.style.display='none'" alt="Silly Goose Logo" style="height: 130px; width: auto; margin: -30px -10px; object-fit: contain;">
+      <span class="logo-text" style="font-size: 2.2rem;">Silly Goose</span>
+    </a>
+    <div class="nav-links">
+      <a href="#portfolio">Shop</a>
+      <a href="#custom">Custom</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></button>
+      <a href="#" onclick="openModal('customModalOverlay'); event.preventDefault();" class="btn btn-primary desktop-cta">Request a Quote</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-top">
+    <span class="logo"><span class="logo-text">Silly Goose</span></span>
+    <button class="modal-close" id="closeMobileMenu" aria-label="Close menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <a href="#portfolio">Shop</a>
+  <a href="#custom">Custom</a>
+  <a href="#about">About</a>
+  <a href="#" onclick="openModal('customModalOverlay'); event.preventDefault(); document.getElementById('mobileMenu').classList.remove('open');" class="btn btn-primary" style="margin-top:var(--space-8);width:100%">Request a Quote</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <!-- ARC CAROUSEL first -->
+    <div class="arc-carousel-outer" id="arcOuter">
+      <div class="arc-track" id="arcTrack">
+        <div class="arc-card"><img src="./public/images/photo album/1.png" alt="Photo card 1" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/2.png" alt="Photo card 2" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/3.png" alt="Photo card 3" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/4.png" alt="Photo card 4" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/5.png" alt="Photo card 5" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/6.png" alt="Photo card 6" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/7.png" alt="Photo card 7" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/8.png" alt="Photo card 8" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/9.png" alt="Photo card 9" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/10.png" alt="Photo card 10" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/11.png" alt="Photo card 11" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/12.png" alt="Photo card 12" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/13.png" alt="Photo card 13" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/14.png" alt="Photo card 14" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/15.png" alt="Photo card 15" draggable="false"></div>
+        <div class="arc-card"><img src="./public/images/photo album/16.png" alt="Photo card 16" draggable="false"></div>
+      </div>
+      <!-- right edge fade (sibling so ::after is free for bottom) -->
+      <div class="arc-fade-right" aria-hidden="true"></div>
+      <!-- bottom fade melts cards into title -->
+      <div class="arc-fade-bottom" aria-hidden="true"></div>
+    </div>
+    <!-- Title sits immediately below, no gap -->
+    <div class="hero-title-wrap">
+      <h1 style="color:var(--col-text-on-peony);">Cards, <em>made yours.</em></h1>
+      <p style="margin-top:var(--space-4); font-size:var(--text-md); font-family:var(--font-heading); color:var(--col-text-on-peony); max-width:100%; white-space:nowrap; margin-inline:auto;">Turn your favourite moments into a deck you can revisit anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM STRIP -->
+<div class="custom-strip" id="stats">
+  <div class="custom-strip-inner">
+    <div class="custom-strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="12" height="16" rx="2" ry="2"/><path d="M7 2h12a2 2 0 012 2v16"/></svg>
+      <h4>500+</h4>
+      <p>Custom Decks Printed</p>
+    </div>
+    <div class="custom-strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3L2 9l10 12L22 9l-4-6H6z"/><path d="M2 9h20M12 21V9M6 3l6 6M18 3l-6 6"/></svg>
+      <h4>350 GSM</h4>
+      <p>Linen-Finish Cardstock</p>
+    </div>
+    <div class="custom-strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <h4>4.9 ★</h4>
+      <p>Loved by Couples &amp; Brands</p>
+    </div>
+    <div class="custom-strip-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/></svg>
+      <h4>Worldwide</h4>
+      <p>Doorstep Delivery</p>
+    </div>
+  </div>
+</div>
+
+<!-- PORTFOLIO & DESIGN CATALOG -->
+<section class="section" id="portfolio">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-kicker" style="display:inline-block; background:var(--col-fennel); color:var(--col-text-on-fennel); padding:4px 12px; border-radius:4px; font-style:normal;">THE BESPOKE ARCHIVE</p>
+      <h2>Explore Custom Decks.</h2>
+    </div>
+    
+    <div class="portfolio-filters reveal">
+      <button class="filter-pill active" data-filter="all">View All</button>
+      <button class="filter-pill" data-filter="wedding">Weddings & Celebrations</button>
+      <button class="filter-pill" data-filter="pr">PR & Influencer Kits</button>
+      <button class="filter-pill" data-filter="corporate">Corporate & Brands</button>
+    </div>
+    
+    <div class="portfolio-grid reveal" id="portfolioGrid">
+      <!-- TAB 1: View All -->
+      <div class="portfolio-card" data-project="indian-heritage" data-viewall="true">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/1.png" alt="Indian Heritage" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Indian Heritage</h4>
+        <span class="portfolio-card-tag">Royal Vintage & Destination</span>
+      </div>
+      <div class="portfolio-card" data-project="memory-love" data-viewall="true">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/2.png" alt="Memory Lane" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Memory Lane</h4>
+        <span class="portfolio-card-tag">Bespoke Keepsake Photo Deck</span>
+      </div>
+      <div class="portfolio-card" data-project="pretty-in-pink" data-viewall="true">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/3.png" alt="Pretty in Pink" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Pretty in Pink</h4>
+        <span class="portfolio-card-tag">Coquette Lifestyle</span>
+      </div>
+      <div class="portfolio-card" data-project="legacy-ar" data-viewall="true">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/4.png" alt="Legacy & Heritage" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Legacy & Heritage</h4>
+        <span class="portfolio-card-tag">Luxury Corporate</span>
+      </div>
+
+      <!-- TAB 2: Weddings & Celebrations -->
+      <div class="portfolio-card" data-category="wedding" data-project="indian-heritage">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/5.png" alt="Indian Heritage" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Indian Heritage</h4>
+        <span class="portfolio-card-tag">Royal Vintage & Destination</span>
+      </div>
+      <div class="portfolio-card" data-category="wedding" data-project="memory-love">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/6.png" alt="Memory Lane" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Memory Lane</h4>
+        <span class="portfolio-card-tag">Bespoke Keepsake Photo Deck</span>
+      </div>
+      <div class="portfolio-card" data-category="wedding" data-project="akshar-elegance">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/7.png" alt="Akshar Elegance" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Akshar Elegance</h4>
+        <span class="portfolio-card-tag">Custom Monogram</span>
+      </div>
+
+      <!-- TAB 3: PR & Influencer Kits -->
+      <div class="portfolio-card" data-category="pr" data-project="glow-routine">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/8.png" alt="Glow Routine" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Glow Routine</h4>
+        <span class="portfolio-card-tag">Skincare & Beauty Launch</span>
+      </div>
+      <div class="portfolio-card" data-category="pr" data-project="pretty-in-pink">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/9.png" alt="Pretty in Pink" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Pretty in Pink</h4>
+        <span class="portfolio-card-tag">Coquette Lifestyle</span>
+      </div>
+      <div class="portfolio-card" data-category="pr" data-project="bollywood-binge">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/10.png" alt="Bollywood Binge" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Bollywood Binge</h4>
+        <span class="portfolio-card-tag">Pop-Art Satire & Brand</span>
+      </div>
+
+      <!-- TAB 4: Corporate & Brands -->
+      <div class="portfolio-card" data-category="corporate" data-project="legacy-ar">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/11.png" alt="Legacy & Heritage" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Legacy & Heritage</h4>
+        <span class="portfolio-card-tag">Executive Luxury</span>
+      </div>
+      <div class="portfolio-card" data-category="corporate" data-project="executive-royalty">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/12.png" alt="Executive Royalty" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Executive Royalty</h4>
+        <span class="portfolio-card-tag">Milestone Editions</span>
+      </div>
+      <div class="portfolio-card" data-category="corporate" data-project="glow-routine">
+        <div class="portfolio-img-wrap"><img src="./public/images/cover photos in order/13.png" alt="Glow Routine" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
+        <h4>Glow Routine</h4>
+        <span class="portfolio-card-tag">Minimalist Typography</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="b2c-marketplace-showcase" class="is-hidden" style="display: none !important;">
+  <!-- B2C MARKETPLACE: Temporarily hidden for B2B launch. Remove 'display: none' to reactivate later. -->
+<!-- SHOP THE WORLDS -->
+<section class="section" id="shop" style="background:var(--col-blue-finch);">
+  <div class="container-wide">
+    <div class="section-head reveal">
+      <h2>Customer favourites.</h2>
+    </div>
+    <div class="worlds-grid reveal" id="worldsGrid">
+      <div class="world-card" data-deck="gp"><img src="./public/images/cardz b2c/1.png" alt="Grand Prix deck — racing themed playing cards" loading="lazy" width="400" height="533">
+        <div class="world-overlay"><div class="wname">Grand Prix</div><div class="wtag">For the racing obsessed.</div><span class="world-cta">Shop the deck →</span></div></div>
+      <div class="world-card" data-deck="art"><img src="./public/images/cardz b2c/2.png" alt="Indian Art House deck — folk art themed playing cards" loading="lazy" width="400" height="533">
+        <div class="world-overlay"><div class="wname">Indian Art House</div><div class="wtag">For the art lover.</div><span class="world-cta">Shop the deck →</span></div></div>
+      <div class="world-card" data-deck="magic"><img src="./public/images/Bollywood Binge/4.png" alt="Magical Abode deck — fantasy themed playing cards" loading="lazy" width="400" height="533">
+        <div class="world-overlay"><div class="wname">Magical Abode</div><div class="wtag">For the one who believes in magic.</div><span class="world-cta">Shop the deck →</span></div></div>
+      <div class="world-card" data-deck="bollywood"><img src="./public/images/Bollywood Binge/5.png" alt="Bollywood Drama deck — retro film poster themed playing cards" loading="lazy" width="400" height="533">
+        <div class="world-overlay"><div class="wname">Bollywood Drama</div><div class="wtag">For the filmy one.</div><span class="world-cta">Shop the deck →</span></div></div>
+    </div>
+  </div>
+</section>
+</section>
+
+<!-- DECK VISUALISER -->
+<section class="section" id="visualiser" style="padding-top: 0;">
+  <div class="container">
+    <div class="visualiser-wrap reveal" style="margin-top: 0; background: var(--col-fennel); border-radius: 24px; padding: var(--space-4) 0; position: relative; z-index: 5; border: 1px solid var(--color-border);">
+      
+      <div class="deck-stage" id="deckStage">
+        <div class="deck-track" id="deckTrack"></div>
+      </div>
+      <p class="deck-hint" id="deckHint" style="text-transform:none; letter-spacing:normal; font-size:var(--text-sm); color:var(--col-text-on-peony); margin-bottom: var(--space-4);">Move across the deck like you're spreading it on a table.</p>
+      
+      <div style="text-align: center;">
+        <button class="btn btn-primary" onclick="openModal('customModalOverlay')" style="padding: 16px 32px; font-size: 16px; background: var(--col-peony); border-color: var(--col-peony); color: var(--col-text-on-peony);">Customise Now &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT & QUALITY -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-kicker" style="display:inline-block; background:var(--col-honey); color:var(--col-text-on-honey); padding:4px 12px; border-radius:4px; font-style:normal;">CRAFT & QUALITY</p>
+      <h2>Four things we obsess over.</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card" style="background:var(--col-pistachio); color:var(--col-text-on-pistachio); padding:24px; border-radius:12px;">
+        <img src="./public/images/4 things /15.png" alt="Fully Bespoke Artwork" style="width:100%; border-radius:8px; margin-bottom:16px; object-fit: cover; aspect-ratio: 1;">
+        <h3 style="color:inherit;">Fully Bespoke Artwork</h3><p style="color:inherit; opacity:0.85;">Custom faces, backs, and packaging tailored to your brand or milestone event.</p>
+      </div>
+      <div class="why-card" style="background:var(--col-peach); color:var(--col-text-on-peach); padding:24px; border-radius:12px;">
+        <img src="./public/images/4 things /16.png" alt="Luxury Tin Packaging" style="width:100%; border-radius:8px; margin-bottom:16px; object-fit: cover; aspect-ratio: 1;">
+        <h3 style="color:inherit; margin-bottom:4px;">Luxury Tin<br>Packaging</h3><p style="color:inherit; opacity:0.85;">Every deck comes encased in a collectible, embossed matte-finish tin case.</p>
+      </div>
+      <div class="why-card" style="background:var(--col-peony); color:var(--col-text-on-peony); padding:24px; border-radius:12px;">
+        <img src="./public/images/4 things /17.png" alt="Premium Finishes & Stock" style="width:100%; border-radius:8px; margin-bottom:16px; object-fit: cover; aspect-ratio: 1;">
+        <h3 style="color:inherit;">Premium Finishes & Stock</h3><p style="color:inherit; opacity:0.85;">Linen-textured card stock available in matte or gloss finishes.</p>
+      </div>
+      <div class="why-card" style="background:var(--col-honey); color:var(--col-text-on-honey); padding:24px; border-radius:12px;">
+        <img src="./public/images/4 things /18.png" alt="Fast Custom Turnaround" style="width:100%; border-radius:8px; margin-bottom:16px; object-fit: cover; aspect-ratio: 1;">
+        <h3 style="color:inherit;">Fast Custom Turnaround</h3><p style="color:inherit; opacity:0.85;">Pan-India delivery within 2–4 weeks from final artwork approval.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CUSTOM GAMES -->
+<section class="section" id="custom" style="padding-top: var(--space-10); padding-bottom: var(--space-10); background: var(--col-fennel);">
+  <div class="container">
+    <div class="section-head reveal" style="text-align: center;">
+      <p class="section-kicker" style="display: inline-block; background: rgba(255,255,255,0.6); padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(0,0,0,0.05);">Custom Games + Gifting</p>
+      <h2 style="margin-top: var(--space-4);">Make it your game.</h2>
+      <p>From weddings to brands to birthdays, create a game made for your people.</p>
+    </div>
+    <div class="custom-grid reveal">
+      <div class="custom-card"><h4>Weddings</h4><p>Custom decks + wedding favours</p></div>
+      <div class="custom-card"><h4>Corporate</h4><p>Branded games + bulk gifting</p></div>
+      <div class="custom-card"><h4>PR Packages</h4><p>Custom decks around your campaign</p></div>
+      <div class="custom-card"><h4>Bridesmaids</h4><p>Personalised bridal-party gifting</p></div>
+      <div class="custom-card"><h4>Groomsmen</h4><p>Custom gifting for the boys</p></div>
+      <div class="custom-card"><h4>Return Gifts</h4><p>A favour people actually keep</p></div>
+      <div class="custom-card"><h4>Birthdays</h4><p>A fully customisable personal deck</p></div>
+      <div style="display:flex;align-items:center;justify-content:center;min-height:160px;">
+        <button class="btn btn-inverse" id="openCustomModal" style="background: var(--col-peony); color: var(--col-text-on-peony); padding: 16px 32px; border-radius: 999px; font-size: 18px; transition: all 0.25s ease-in-out; border: none; cursor: pointer; box-shadow: var(--shadow-sm);" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='var(--shadow-md)';" onmouseout="this.style.transform='none'; this.style.boxShadow='var(--shadow-sm)';">Create A Custom Game</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT OUR STORY -->
+<section class="section" id="about" style="padding-top: 100px; padding-bottom: 100px; position: relative; overflow: hidden;">
+  <div class="container" style="max-width: 750px; text-align: center; position: relative; z-index: 2;">
+    
+    <h2 style="font-family: var(--font-heading); font-size: 34px; line-height: 1.4; color: var(--color-text); margin-bottom: var(--space-6); text-align: center;">
+      Most event favors get left behind. We make the ones people argue over who gets to take home.
+    </h2>
+    
+    <p style="font-size: 17px; line-height: 1.7; color: var(--color-text-muted); margin-bottom: var(--space-8); text-align: center;">
+      Silly Goose was built on a simple belief: your favorite memories shouldn't stay trapped on a screen. We transform wedding lore, inside jokes and brand stories into tactile decks designed to be shuffled, played and kept for decades.
+    </p>
+
+    <p style="font-family: var(--font-display); font-size: 24px; color: var(--col-text-on-honey); font-style: italic; background-color: var(--col-honey); display: inline-block; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-align: center;">
+      Crafted for play, kept for life.
+    </p>
+  </div>
+
+  <img src="./public/images/cardz b2c/2.png" alt="Floating Card Left" style="position: absolute; left: -5%; top: 20%; width: 220px; transform: rotate(-8deg); opacity: 0.9; box-shadow: var(--shadow-lg); border-radius: 12px; z-index: 1;">
+  <img src="./public/images/cardz b2c/1.png" alt="Floating Card Right" style="position: absolute; right: -8%; bottom: 10%; width: 260px; transform: rotate(6deg); opacity: 0.9; box-shadow: var(--shadow-lg); border-radius: 12px; z-index: 1;">
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo"><span class="logo-text">Silly Goose</span></span>
+        <p>A design-led Indian games and gifting brand. Games, made beautiful.</p>
+        <div class="social-row"><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a></div>
+      </div>
+      <div class="footer-col"><h5>Products</h5><a href="#shop">Bespoke Decks</a><a href="#shop">Memory Lane</a><a href="#shop">Glow Routine</a></div>
+      <div class="footer-col"><h5>Custom</h5><a href="#custom">Weddings</a><a href="#custom">Corporate</a><a href="#custom">Influencer PR</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Silly Goose. All rights reserved.</span>
+      <span>Made in India.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="portfolioModalOverlay">
+  <div class="modal lightbox-modal">
+    <div class="modal-head">
+      <h3 id="lightboxTitle" style="margin:0; font-family:var(--font-display); font-size:var(--text-2xl);">Project Details</h3>
+      <button class="modal-close" onclick="closeModal('portfolioModalOverlay')" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    </div>
+    <div class="lightbox-grid" id="lightboxGrid">
+      <!-- dynamic images injected here -->
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="customModalOverlay">
+  <div class="modal">
+    <div class="modal-head"><h3>Create a custom game</h3><button class="modal-close" onclick="closeModal('customModalOverlay')" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+    <form action="https://formsubmit.co/arushi.workk@gmail.com" method="POST">
+      <div class="form-grid2">
+        <div class="form-row"><label for="cf-name">Name</label><input id="cf-name" name="Name" required></div>
+        <div class="form-row"><label for="cf-phone">Phone</label><input id="cf-phone" name="Phone" required></div>
+      </div>
+      <div class="form-row"><label for="cf-email">Email</label><input id="cf-email" name="Email" type="email" required></div>
+      <div class="form-grid2">
+        <div class="form-row"><label for="cf-occasion">Occasion</label><select id="cf-occasion" name="Occasion"><option>Wedding</option><option>Corporate</option><option>Birthday</option><option>Other</option></select></div>
+        <div class="form-row"><label for="cf-qty">Quantity</label><input id="cf-qty" name="Quantity" type="number" min="1" placeholder="e.g. 50"></div>
+      </div>
+      <div class="form-row"><label for="cf-deadline">Deadline</label><input id="cf-deadline" name="Deadline" type="date"></div>
+      <div class="form-row"><label for="cf-req">Customisation requirements</label><textarea id="cf-req" name="Requirements" rows="3" placeholder="Tell us about your idea..."></textarea></div>
+      <div class="form-row"><label for="cf-file">Upload reference (optional)</label><input id="cf-file" name="Attachment" type="file" accept="image/*,.pdf"></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:var(--space-2)">Send Enquiry</button>
+    </form>
+  </div>
+</div>
+
+
+
+<script>
+/* theme toggle */
+(function(){const t=document.getElementById('themeToggle'),r=document.documentElement;let d=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';r.setAttribute('data-theme',d);
+function icon(dark){return dark?'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>':'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>';}
+t.innerHTML=icon(d==='dark');
+t.addEventListener('click',()=>{d=d==='dark'?'light':'dark';r.setAttribute('data-theme',d);t.setAttribute('aria-label','Switch to '+(d==='dark'?'light':'dark')+' mode');t.innerHTML=icon(d==='dark');});})();
+
+/* nav scroll state */
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>10);});
+
+/* scroll reveal observer */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* mobile menu */
+const hamburgerBtn=document.getElementById('hamburgerBtn'),mobileMenu=document.getElementById('mobileMenu'),closeMobileMenu=document.getElementById('closeMobileMenu');
+hamburgerBtn.addEventListener('click',()=>mobileMenu.classList.add('open'));
+closeMobileMenu.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mobileMenu.classList.remove('open')));
+
+/* modals */
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.getElementById('openCustomModal').addEventListener('click',()=>openModal('customModalOverlay'));
+document.querySelectorAll('.modal-overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('open');}));
+
+/* portfolio interactive logic */
+const filterPills = document.querySelectorAll('.filter-pill');
+const portfolioCards = document.querySelectorAll('.portfolio-card');
+filterPills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    filterPills.forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    const filter = pill.dataset.filter;
+    portfolioCards.forEach(card => {
+      if (filter === 'all') {
+        card.style.display = card.dataset.viewall ? 'block' : 'none';
+      } else {
+        card.style.display = (card.dataset.category === filter) ? 'block' : 'none';
+      }
+    });
+  });
+});
+
+// Initialize View All state correctly
+document.querySelector('.filter-pill[data-filter="all"]').click();
+
+const PORTFOLIO_DATA = {
+  'indian-heritage': 'indian-heritage',
+  'memory-love': 'memory-love',
+  'akshar-elegance': 'akshar-elegance',
+  'glow-routine': 'glow-routine',
+  'pretty-in-pink': 'pretty-in-pink',
+  'bollywood-binge': 'bollywood-binge',
+  'legacy-ar': 'legacy-ar',
+  'executive-royalty': 'executive-royalty'
+};
+
+portfolioCards.forEach(card => {
+  card.addEventListener('click', () => {
+    // highlight clicked card by toggling active class
+    portfolioCards.forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+    
+    const project = card.dataset.project;
+    const deckKey = PORTFOLIO_DATA[project] || 'gp';
+    
+    // trigger visualizer
+    renderDeck(deckKey);
+    
+    // scroll down to the visualizer directly
+    document.getElementById('visualiser').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+
+/* deck assets registry */
+const DECKS = {
+  'indian-heritage': {
+    name: 'Indian Heritage',
+    imgs: Array.from({length: 15}, (_, i) => `./public/images/indian heritage/${26 + i}.png`)
+  },
+  'memory-love': {
+    name: 'Memory Lane',
+    imgs: Array.from({length: 16}, (_, i) => `./public/images/memory love/${1 + i}.png`)
+  },
+  'akshar-elegance': {
+    name: 'Akshar Elegance',
+    imgs: Array.from({length: 16}, (_, i) => `./public/images/Akshar Elegance/${41 + i}.png`)
+  },
+  'glow-routine': {
+    name: 'Glow Routine',
+    imgs: Array.from({length: 16}, (_, i) => `./public/images/glow routine/${1 + i}.png`)
+  },
+  'pretty-in-pink': {
+    name: 'Pretty in Pink',
+    imgs: Array.from({length: 16}, (_, i) => `./public/images/Pretty in Pink/${6 + i}.png`)
+  },
+  'bollywood-binge': {
+    name: 'Bollywood Binge',
+    imgs: Array.from({length: 16}, (_, i) => `./public/images/Bollywood Binge/${4 + i}.png`)
+  },
+  'legacy-ar': {
+    name: 'Legacy & Heritage',
+    imgs: Array.from({length: 14}, (_, i) => `./public/images/Legacy & Heritage/${74 + i}.png`)
+  },
+  'executive-royalty': {
+    name: 'Executive Royalty',
+    imgs: Array.from({length: 16}, (_, i) => `./public/images/Executive Royalty /${20 + i}.png`)
+  }
+};
+
+/* jump to visualiser deck when clicking world card / person card */
+function scrollToDeckTab(deckKey){
+  document.querySelectorAll('.vtab').forEach(t=>t.classList.toggle('active',t.dataset.deck===deckKey));
+  renderDeck(deckKey);
+  document.getElementById('deckStage').scrollIntoView({behavior:'smooth',block:'center'});
+}
+document.querySelectorAll('.world-card').forEach(c=>c.addEventListener('click',()=>scrollToDeckTab(c.dataset.deck)));
+document.querySelectorAll('.person-card').forEach(c=>c.addEventListener('click',()=>scrollToDeckTab(c.dataset.deck)));
+document.querySelectorAll('.vtab').forEach(tab=>tab.addEventListener('click',()=>{
+  document.querySelectorAll('.vtab').forEach(t=>t.classList.remove('active'));
+  tab.classList.add('active');
+  renderDeck(tab.dataset.deck);
+}));
+
+/* ── ARC CAROUSEL ── */
+(function(){
+  const outer=document.getElementById('arcOuter');
+  const track=document.getElementById('arcTrack');
+  if(!outer||!track)return;
+
+  // Clone cards for seamless infinite loop
+  const origCards=[...track.children];
+  origCards.forEach(c=>track.appendChild(c.cloneNode(true)));
+  origCards.forEach(c=>track.appendChild(c.cloneNode(true)));
+
+  const CARD_W=()=>track.querySelector('.arc-card').offsetWidth+20; // width + gap
+  const SET_W=()=>CARD_W()*16;
+
+  let x=0;           // current translateX
+  let vel=0;         // velocity for momentum
+  let isDragging=false;
+  let startX=0;
+  let lastX=0;
+  let lastTime=0;
+  let autoSpeed=-1.8; // px per frame — faster scroll
+  let rafId=null;
+  let paused=false;
+
+  function applyArc(){
+    const cards=[...track.querySelectorAll('.arc-card')];
+    const cx=outer.clientWidth/2;
+    const ARC_ROT=18;   // max degrees at far edges
+    const ARC_LIFT=90;  // max px drop at far edges (parabola)
+    cards.forEach((card)=>{
+      const rect=card.getBoundingClientRect();
+      const cardCenter=rect.left+rect.width/2;
+      const dist=cardCenter-cx;
+      // Normalise: clamp so cards way off-screen don't go crazy
+      const norm=Math.max(-1.6,Math.min(1.6, dist/(cx||1)));
+      const rot=norm*ARC_ROT;
+      // Parabola: cards at centre are highest, edges drop down
+      const lift=norm*norm*ARC_LIFT;
+      card.style.transform=`rotate(${rot}deg) translateY(${lift}px)`;
+    });
+  }
+
+  function setX(val){
+    const sw=SET_W();
+    // Modulo wrap: keep x within one set's width
+    x=((val%sw)+sw)%sw*-1-sw; // keep in negative scroll territory
+    // Simpler: just wrap when we've scrolled one full set
+    x=val;
+    if(x<-SET_W()*2) x+=SET_W();
+    if(x>-SET_W()*0) x-=SET_W();
+    track.style.transform=`translateX(${x}px)`;
+    applyArc();
+  }
+
+  function loop(){
+    if(!isDragging&&!paused){
+      x+=autoSpeed;
+      // Seamless wrap
+      const sw=SET_W();
+      if(x<-sw*2) x+=sw;
+      if(x>0) x-=sw;
+      track.style.transform=`translateX(${x}px)`;
+      applyArc();
+    } else if(isDragging){
+      applyArc();
+    } else if(Math.abs(vel)>0.1){
+      // Momentum after drag
+      x+=vel;
+      vel*=0.94;
+      const sw=SET_W();
+      if(x<-sw*2) x+=sw;
+      if(x>0) x-=sw;
+      track.style.transform=`translateX(${x}px)`;
+      applyArc();
+    }
+    rafId=requestAnimationFrame(loop);
+  }
+
+  // Start with offset so cards aren't bunched at left
+  x=-SET_W()*0.5;
+  track.style.transform=`translateX(${x}px)`;
+
+  // Mouse drag
+  outer.addEventListener('mousedown',e=>{
+    isDragging=true;startX=e.clientX;lastX=e.clientX;lastTime=Date.now();vel=0;
+    outer.style.cursor='grabbing';
+  });
+  window.addEventListener('mousemove',e=>{
+    if(!isDragging)return;
+    const dx=e.clientX-lastX;
+    const now=Date.now();
+    vel=dx*0.6+(vel*0.4);
+    x+=dx;
+    lastX=e.clientX;lastTime=now;
+    track.style.transform=`translateX(${x}px)`;
+  });
+  window.addEventListener('mouseup',()=>{
+    if(!isDragging)return;
+    isDragging=false;
+    outer.style.cursor='grab';
+  });
+
+  // Touch drag
+  outer.addEventListener('touchstart',e=>{
+    isDragging=true;startX=e.touches[0].clientX;lastX=startX;vel=0;
+  },{passive:true});
+  outer.addEventListener('touchmove',e=>{
+    if(!isDragging)return;
+    const dx=e.touches[0].clientX-lastX;
+    vel=dx*0.6+(vel*0.4);
+    x+=dx;
+    lastX=e.touches[0].clientX;
+    track.style.transform=`translateX(${x}px)`;
+  },{passive:true});
+  outer.addEventListener('touchend',()=>{isDragging=false;});
+
+  // Pause auto-scroll on hover
+  outer.addEventListener('mouseenter',()=>{paused=true;});
+  outer.addEventListener('mouseleave',()=>{paused=false;});
+
+  loop();
+  applyArc();
+  window.addEventListener('resize',applyArc);
+})();
+
+/* SECTION DECK VISUALISER (tabbed) */
+const deckTrack=document.getElementById('deckTrack');
+const deckStage=document.getElementById('deckStage');
+let currentCards=[];
+
+function renderDeck(key){
+  const deck = DECKS[key];
+  if (!deck) return;
+  deckTrack.innerHTML = '';
+  currentCards = [];
+  
+  const images = deck.imgs ? deck.imgs : Array(deck.count).fill(deck.img);
+  images.forEach((src, i) => {
+    const el = document.createElement('div');
+    el.className = 'deck-card';
+    el.innerHTML = `<img src="${src}" alt="${deck.name} card ${i+1}" loading="lazy" width="160" height="224">`;
+    deckTrack.appendChild(el);
+    currentCards.push({el, baseIndex:i});
+  });
+  
+  layoutCards(null);
+}
+
+function layoutCards(px){
+  const n=currentCards.length;
+  if(n===0)return;
+  const sw2=deckStage.clientWidth;
+  const spread=Math.min(sw2*0.85, n*45);
+  const startX=(sw2-spread)/2;
+  const step=spread/(n-1||1);
+  currentCards.forEach((card,i)=>{
+    const baseX=startX+i*step;
+    let hoverBoost=0, rot=0, z=n-i, scale=1, liftY=0;
+    if(px!==null){
+      const dist=Math.abs(px-baseX);
+      const influence=Math.max(0,1-dist/200);
+      hoverBoost=influence*40;
+      rot=((px-baseX)/200)*-10*influence;
+      scale=1+influence*0.25;
+      liftY=-influence*40;
+      z=100+Math.round(influence*50)+(n-i);
+    }
+    card.el.style.left=(baseX-80+(px!==null?(px-baseX>0?-hoverBoost*0.15:hoverBoost*0.15):0))+'px';
+    card.el.style.transform=`translate(0, calc(-50% + ${liftY}px)) rotate(${rot}deg) scale(${scale})`;
+    card.el.style.zIndex=z;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderDeck('indian-heritage');
+});
+
+let rafId=null;
+function handleMove(clientX){
+  const rect=deckStage.getBoundingClientRect();
+  const px=clientX-rect.left;
+  if(rafId)cancelAnimationFrame(rafId);
+  rafId=requestAnimationFrame(()=>layoutCards(px));
+}
+deckStage.addEventListener('mousemove',e=>handleMove(e.clientX));
+deckStage.addEventListener('mouseleave',()=>layoutCards(null));
+deckStage.addEventListener('touchmove',e=>{if(e.touches[0])handleMove(e.touches[0].clientX);},{passive:true});
+deckStage.addEventListener('touchend',()=>layoutCards(null));
+window.addEventListener('resize',()=>{layoutCards(null);});
+
+if(typeof lucide!=='undefined')lucide.createIcons();
+</script>
+</body>
+</html>
