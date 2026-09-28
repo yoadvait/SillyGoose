@@ -407,9 +407,38 @@ a,button{transition:color var(--transition-interactive),background var(--transit
 @media(max-width:480px){.form-grid2{grid-template-columns:1fr}}
 
 /* scroll reveal */
-.reveal{opacity:1}
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* For elements that should stagger internally */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-stagger.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-stagger.active > *:nth-child(1) { transition-delay: 0.05s; }
+.reveal-stagger.active > *:nth-child(2) { transition-delay: 0.1s; }
+.reveal-stagger.active > *:nth-child(3) { transition-delay: 0.15s; }
+.reveal-stagger.active > *:nth-child(4) { transition-delay: 0.2s; }
+.reveal-stagger.active > *:nth-child(5) { transition-delay: 0.25s; }
+.reveal-stagger.active > *:nth-child(6) { transition-delay: 0.3s; }
+.reveal-stagger.active > *:nth-child(7) { transition-delay: 0.35s; }
+.reveal-stagger.active > *:nth-child(8) { transition-delay: 0.4s; }
+.reveal-stagger.active > *:nth-child(9) { transition-delay: 0.45s; }
+.reveal-stagger.active > *:nth-child(10) { transition-delay: 0.5s; }
 
-@keyframes revealFade{to{opacity:1}}
 </style>
 </head>
 <body>
@@ -454,7 +483,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
   <div class="hero-bg"></div>
   <div class="hero-inner">
     <!-- ARC CAROUSEL first -->
-    <div class="arc-carousel-outer" id="arcOuter">
+    <div class="arc-carousel-outer reveal" id="arcOuter">
       <div class="arc-track" id="arcTrack">
         <div class="arc-card"><img src="./images/photo album/1.webp" alt="Photo card 1" draggable="false" decoding="async"></div>
         <div class="arc-card"><img src="./images/photo album/2.webp" alt="Photo card 2" draggable="false" decoding="async"></div>
@@ -479,7 +508,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
       <div class="arc-fade-bottom" aria-hidden="true"></div>
     </div>
     <!-- Title sits immediately below, no gap -->
-    <div class="hero-title-wrap">
+    <div class="hero-title-wrap reveal">
       <h1 style="color:var(--col-text-on-peony);">Cards, <em>made yours.</em></h1>
       <p class="hero-subtext" style="margin-top:var(--space-4); font-size:var(--text-md); font-family:var(--font-heading); color:var(--col-text-on-peony); max-width:100%; white-space:nowrap; margin-inline:auto;">Turn your favourite moments into a deck.<br>You can revisit anytime.</p>
     </div>
@@ -487,7 +516,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
 </section>
 
 <!-- CUSTOM STRIP -->
-<div class="custom-strip" id="stats">
+<div class="custom-strip reveal" id="stats">
   <div class="custom-strip-inner">
     <div class="custom-strip-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="12" height="16" rx="2" ry="2"/><path d="M7 2h12a2 2 0 012 2v16"/></svg>
@@ -527,7 +556,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
       <button class="filter-pill" data-filter="corporate">Corporate & Brands</button>
     </div>
     
-    <div class="portfolio-grid reveal" id="portfolioGrid">
+    <div class="portfolio-grid reveal-stagger" id="portfolioGrid">
       <!-- TAB 1: View All -->
       <div class="portfolio-card" data-project="indian-heritage" data-viewall="true">
         <div class="portfolio-img-wrap"><img decoding="async" src="./images/cover photos in order/1.webp" alt="Indian Heritage" loading="lazy" style="aspect-ratio:1/1; object-fit:cover; border-radius:12px;"></div>
@@ -612,7 +641,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
     <div class="section-head reveal">
       <h2>Customer favourites.</h2>
     </div>
-    <div class="worlds-grid reveal" id="worldsGrid">
+    <div class="worlds-grid reveal-stagger" id="worldsGrid">
       <div class="world-card" data-deck="gp"><img src="./images/cardz b2c/1.webp" alt="Grand Prix deck — racing themed playing cards" loading="lazy" width="400" height="533">
         <div class="world-overlay"><div class="wname">Grand Prix</div><div class="wtag">For the racing obsessed.</div><span class="world-cta">Shop the deck →</span></div></div>
       <div class="world-card" data-deck="art"><img src="./images/cardz b2c/56.webp" alt="Indian Art House deck — folk art themed playing cards" loading="lazy" width="400" height="533">
@@ -650,7 +679,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
       <p class="section-kicker" style="display:inline-block; background:var(--col-honey); color:var(--col-text-on-honey); padding:4px 12px; border-radius:4px; font-style:normal;">CRAFT & QUALITY</p>
       <h2>Four things we obsess over.</h2>
     </div>
-    <div class="why-grid reveal">
+    <div class="why-grid reveal-stagger">
       <div class="why-card" style="background:var(--col-pistachio); color:var(--col-text-on-pistachio); padding:24px; border-radius:12px;">
         <img src="./images/4 things /15.webp" alt="Fully Bespoke Artwork" style="width:100%; border-radius:8px; margin-bottom:16px; object-fit: cover; aspect-ratio: 1;">
         <h3 style="color:inherit;">Fully Bespoke Artwork</h3><p style="color:inherit; opacity:0.85;">Custom faces, backs, and packaging tailored to your brand or milestone event.</p>
@@ -680,7 +709,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
       <h2 style="margin-top: var(--space-4);">Make it your game.</h2>
       <p>From weddings to brands to birthdays, create a game made for your people.</p>
     </div>
-    <div class="custom-grid reveal">
+    <div class="custom-grid reveal-stagger">
       <div class="custom-card"><h4>Weddings</h4><p>Custom decks + wedding favours</p></div>
       <div class="custom-card"><h4>Corporate</h4><p>Branded games + bulk gifting</p></div>
       <div class="custom-card"><h4>PR Packages</h4><p>Custom decks around your campaign</p></div>
@@ -696,7 +725,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
 </section>
 
 <!-- ABOUT OUR STORY -->
-<section class="section" id="about" style="padding-top: 100px; padding-bottom: 100px; position: relative; overflow: hidden;">
+<section class="section reveal" id="about" style="padding-top: 100px; padding-bottom: 100px; position: relative; overflow: hidden;">
   <div class="container" style="max-width: 750px; text-align: center; position: relative; z-index: 2;">
     
     <div class="section-head">
@@ -716,7 +745,7 @@ a,button{transition:color var(--transition-interactive),background var(--transit
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-grid">
+    <div class="footer-grid reveal-stagger">
       <div class="footer-brand">
         <span class="logo"><span class="logo-text">Silly Goose</span></span>
         <p>A design-led Indian games and gifting brand. Games, made beautiful.</p>
@@ -777,16 +806,18 @@ window.addEventListener('scroll',()=>{document.getElementById('mainNav').classLi
 
 /* scroll reveal observer */
 const observer = new IntersectionObserver((entries) => {
+  let delay = 0;
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-      entry.target.style.animation = 'revealFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+      setTimeout(() => {
+        entry.target.classList.add('active');
+      }, delay);
+      delay += 50; // stagger multiple reveals that enter at once
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => {
-  el.style.opacity = 0;
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
   observer.observe(el);
 });
 
